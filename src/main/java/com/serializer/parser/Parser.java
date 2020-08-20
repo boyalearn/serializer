@@ -22,18 +22,18 @@ public class Parser {
         if (null == object) {
             return node;
         }
+        if (null != key) {
+            node.setKey(key);
+            node.setKeyClazz(key.getClass());
+        }
         if (isBasicClass(object)) {
-            node.setValueClazz(Integer.class);
+            node.setValueClazz(object.getClass());
             node.setValue(object);
             return node;
         }
         node.setValueClazz(object.getClass());
         node.setValue(object);
-        if (null != key) {
-            node.setKey(key);
-            node.setKeyClazz(key.getClass());
-        }
-        Field[] fields = object.getClass().getDeclaredFields();
+
         if (object instanceof Map) {
             Iterator iterator = ((Map) object).entrySet().iterator();
             while (iterator.hasNext()) {
@@ -49,6 +49,7 @@ public class Parser {
                 node.getFields().add(item);
             }
         } else {
+            Field[] fields = object.getClass().getDeclaredFields();
             for (Field field : fields) {
                 if (Modifier.isStatic(field.getModifiers())) {
                     continue;
@@ -63,7 +64,20 @@ public class Parser {
                 node.getFields().add(item);
             }
         }
+        setValueNull(node);
         return node;
+    }
+
+    private void setValueNull(Node node) {
+        if (null == node || null == node.getValue()) {
+            return;
+        }
+        if (!isBasicClass(node.getValue())) {
+            node.setValue(null);
+        }
+        for (Node item : node.getFields()) {
+            setValueNull(item);
+        }
     }
 
     private boolean isBasicClass(Object object) {
@@ -113,11 +127,19 @@ public class Parser {
         char[] chars = json.toCharArray();
         for (int i = 0; i < chars.length; i++) {
             odStack.push(chars[i]);
-            if ('{' == chars[i] || '[' == chars[i]) {
+            if ('{' == chars[i]) {
                 opStack.add(chars[i]);
-            } else if ('}' == chars[i] || ']' == chars[i]) {
+
+            } else if ('}' == chars[i]) {
                 opStack.pop();
-            } else if ('=' == chars[i]) {
+            } else if('['==chars[i]){
+                opStack.add(chars[i]);
+            } else if(']'==chars[i]){
+                opStack.pop();
+                String str = sb.toString();
+                sb.setLength(0);
+                LOGGER.info(str);
+            }else if ('=' == chars[i]) {
                 String str = sb.toString();
                 sb.setLength(0);
                 LOGGER.info(str);
