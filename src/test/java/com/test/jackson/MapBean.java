@@ -7,7 +7,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class MapBean {
 
 
@@ -17,16 +16,14 @@ public class MapBean {
     public MapBean(String json) {
         this.map = new LinkedHashMap<>();
     }
-
-    //@JsonSerialize(using = MySerializer.class)
     @JsonDeserialize(using = MyDeserialize.class)
-    private Map<List<String>, Object> map = new LinkedHashMap<List<String>, Object>();
+    private Map<String, Object> map = new LinkedHashMap<String, Object>();
 
-    public Map<List<String>, Object> getMap() {
+    public Map<String, Object> getMap() {
         return map;
     }
 
-    public void setMap(Map<List<String>, Object> map) {
+    public void setMap(Map<String, Object> map) {
         this.map = map;
     }
 }

@@ -5,22 +5,25 @@ import java.util.List;
 
 public class Node {
 
-    private Class<?> keyClazz;
+    private Class<?> keyType;
 
     private Object key;
 
-    private Class<?> valueClazz;
+    private List<Node> keyFields = new ArrayList<>();
+
+
+    private Class<?> valueType;
 
     private Object value;
 
-    private List<Node> fields = new ArrayList<>();
+    private List<Node> valueFields = new ArrayList<>();
 
-    public Class<?> getKeyClazz() {
-        return keyClazz;
+    public Class<?> getKeyType() {
+        return keyType;
     }
 
-    public void setKeyClazz(Class<?> keyClazz) {
-        this.keyClazz = keyClazz;
+    public void setKeyType(Class<?> keyType) {
+        this.keyType = keyType;
     }
 
     public Object getKey() {
@@ -31,12 +34,20 @@ public class Node {
         this.key = key;
     }
 
-    public Class<?> getValueClazz() {
-        return valueClazz;
+    public List<Node> getKeyFields() {
+        return keyFields;
     }
 
-    public void setValueClazz(Class<?> valueClazz) {
-        this.valueClazz = valueClazz;
+    public void setKeyFields(List<Node> keyFields) {
+        this.keyFields = keyFields;
+    }
+
+    public Class<?> getValueType() {
+        return valueType;
+    }
+
+    public void setValueType(Class<?> valueType) {
+        this.valueType = valueType;
     }
 
     public Object getValue() {
@@ -47,21 +58,11 @@ public class Node {
         this.value = value;
     }
 
-    public List<Node> getFields() {
-        return fields;
+    public List<Node> getValueFields() {
+        return valueFields;
     }
 
-    public void setFields(List<Node> fields) {
-        this.fields = fields;
-    }
-
-    @Override
-    public String toString() {
-        return "{keyClazz=" + (null == keyClazz ? "null" : keyClazz.getCanonicalName()) +
-                ", key=" + key +
-                ", valueClazz=" + (null == valueClazz ? "null" : valueClazz.getCanonicalName()) +
-                ", value=" + value +
-                ", fields=" + fields +
-                '}';
+    public void setValueFields(List<Node> valueFields) {
+        this.valueFields = valueFields;
     }
 }
