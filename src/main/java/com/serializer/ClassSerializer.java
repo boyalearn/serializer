@@ -38,7 +38,7 @@ public class ClassSerializer implements Serializer {
     @Override
     public Object deserialize(String context) throws SerializeException {
         try {
-            Node node = (Node) mapper.readValue(context, Object.class);
+            Node node = mapper.readValue(context, Node.class);
             return classBuilder.build(node);
 
         } catch (JsonProcessingException | InvocationTargetException | NoSuchMethodException | InstantiationException | IllegalAccessException e) {
