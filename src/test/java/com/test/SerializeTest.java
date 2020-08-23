@@ -31,6 +31,7 @@ public class SerializeTest {
         auth.setFlag(true);
         auth.setId(1L);
         auth.setDate(new Date());
+        auth.setAuthEnum(AuthEnum.PRIVATE);
         listMap.put(list1, auth);
         listMap.put(list2, new Auth("2", "3"));
         listMapBean.setMap(listMap);

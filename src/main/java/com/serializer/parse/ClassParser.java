@@ -25,6 +25,9 @@ public class ClassParser implements Parser {
         } else if (MethodUtils.isBasicClass(oClass)) {
             BasicClassNode basicClassNode = new BasicClassNode();
             return basicClassNode.parseSelf(object, this);
+        } else if(oClass.isEnum()){
+            EnumNode enumNode=new EnumNode();
+            return enumNode.parseSelf(object, this);
         } else {
             ClassNode classNode = new ClassNode();
             return classNode.parseSelf(object, this);

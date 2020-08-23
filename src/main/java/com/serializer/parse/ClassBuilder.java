@@ -1,10 +1,7 @@
 package com.serializer.parse;
 
 import com.serializer.node.Node;
-import com.serializer.token.BasicClassToken;
-import com.serializer.token.ClassToken;
-import com.serializer.token.ListToken;
-import com.serializer.token.MapToken;
+import com.serializer.token.*;
 import com.serializer.utils.MethodUtils;
 
 import java.lang.reflect.InvocationTargetException;
@@ -21,11 +18,14 @@ public class ClassBuilder implements Builder {
 
     private BasicClassToken basicClassToken;
 
+    private EnumToken enumToken;
+
     public ClassBuilder() {
         this.mapToken = new MapToken(this);
         this.listToken = new ListToken(this);
         this.classToken = new ClassToken(this);
         this.basicClassToken = new BasicClassToken(this);
+        this.enumToken = new EnumToken(this);
     }
 
     @Override
@@ -36,6 +36,8 @@ public class ClassBuilder implements Builder {
             return listToken.build(node);
         } else if (MethodUtils.isBasicClass(node.getType())) {
             return basicClassToken.build(node);
+        } else if (node.getType().isEnum()) {
+            return enumToken.build(node);
         } else {
             return classToken.build(node);
         }

@@ -1,5 +1,7 @@
 package com.test.entity;
 
+import com.test.AuthEnum;
+
 import java.util.Date;
 
 public class Auth {
@@ -18,6 +20,8 @@ public class Auth {
     private Boolean flag;
 
     private Date date;
+
+    private AuthEnum authEnum;
 
 
     public Auth(String role, String menu) {
@@ -73,6 +77,14 @@ public class Auth {
         this.date = date;
     }
 
+    public AuthEnum getAuthEnum() {
+        return authEnum;
+    }
+
+    public void setAuthEnum(AuthEnum authEnum) {
+        this.authEnum = authEnum;
+    }
+
     @Override
     public String toString() {
         return "Auth{" +
@@ -82,6 +94,7 @@ public class Auth {
                 ", age=" + age +
                 ", flag=" + flag +
                 ", date=" + date +
+                ", authEnum=" + authEnum +
                 '}';
     }
 }

@@ -22,6 +22,7 @@ public class ClassToken implements Token {
         Object object = node.getType().newInstance();
         ClassNode classNode = (ClassNode) node;
         for (ClassField field : classNode.getFields()) {
+            if(null==field.getValue()) continue;
             Method method = MethodUtils.getMethod(node, field, field.getValue().getType());
             method.invoke(object, builder.build(field.getValue()));
         }
