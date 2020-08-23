@@ -16,8 +16,14 @@
 ## 特新
 
 支持已知的反序列化类型
+
 1.Map类型
+
 2.List类型
+
 3.Java基础类型（Integer,Long,Double,BigDecimal,Date,Boolean）
+
 4.Enum类型
+
 5.普通的Java类型
+
