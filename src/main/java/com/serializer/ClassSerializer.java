@@ -31,6 +31,7 @@ public class ClassSerializer implements Serializer {
             Node node = classParser.parse(object);
             return mapper.writeValueAsString(node);
         } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException | JsonProcessingException e) {
+            e.printStackTrace();
             throw new SerializeException(e.getMessage());
         }
     }
@@ -42,6 +43,7 @@ public class ClassSerializer implements Serializer {
             return classBuilder.build(node);
 
         } catch (JsonProcessingException | InvocationTargetException | NoSuchMethodException | InstantiationException | IllegalAccessException e) {
+            e.printStackTrace();
             throw new SerializeException(e.getMessage());
         }
     }

@@ -8,6 +8,7 @@ import com.test.entity.ListMapBean;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -25,7 +26,12 @@ public class SerializeTest {
         List<String> list2 = new ArrayList<>();
         list2.add("keyOne2");
         list2.add("keyTwo2");
-        listMap.put(list1, new Auth("1", "2"));
+        Auth auth=new Auth("1", "2");
+        auth.setAge(1);
+        auth.setFlag(true);
+        auth.setId(1L);
+        auth.setDate(new Date());
+        listMap.put(list1, auth);
         listMap.put(list2, new Auth("2", "3"));
         listMapBean.setMap(listMap);
         String serialize = SerializerUtil.serialize(listMapBean);

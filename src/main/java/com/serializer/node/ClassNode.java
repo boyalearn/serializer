@@ -33,6 +33,7 @@ public class ClassNode extends AbstractNode {
             }
             Method method = object.getClass().getMethod(MethodUtils.buildGetMethodName(field.getName()));
             Object attr = method.invoke(object);
+            if (null == attr) continue;
             getFields().add(new ClassField(field.getName(), parser.parse(attr)));
         }
         return this;

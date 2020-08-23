@@ -5,6 +5,7 @@ import com.serializer.node.Node;
 
 import java.lang.reflect.Method;
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -20,6 +21,15 @@ public final class MethodUtils {
         try {
             return node.getType().getDeclaredMethod(buildSetMethodName((field.getName())),paramType);
         } catch (NoSuchMethodException e) {
+            if(paramType==Integer.class){
+                return getMethod(node, field, int.class);
+            }
+            if(paramType==Long.class){
+                return getMethod(node, field, long.class);
+            }
+            if(paramType==Double.class){
+                return getMethod(node, field, double.class);
+            }
             Class<?>[] interfaces = paramType.getInterfaces();
             for (Class<?> inter : interfaces) {
                 return getMethod(node, field, inter);
@@ -28,6 +38,7 @@ public final class MethodUtils {
             if (null != superclass) {
                 return getMethod(node, field, superclass);
             }
+
             throw e;
         }
     }
@@ -40,9 +51,11 @@ public final class MethodUtils {
         CLASS.add(Long.class);
         CLASS.add(Double.class);
         CLASS.add(int.class);
-        CLASS.add(double.class);
         CLASS.add(long.class);
+        CLASS.add(double.class);
         CLASS.add(BigDecimal.class);
+        CLASS.add(Boolean.class);
+        CLASS.add(Date.class);
     }
 
     public static boolean isBasicClass(Class<?> clazz) {

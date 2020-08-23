@@ -2,6 +2,8 @@ package com.serializer.node;
 
 import com.serializer.parse.Parser;
 
+import java.util.Date;
+
 public class BasicClassNode extends AbstractNode {
 
     private Object value;
@@ -17,8 +19,13 @@ public class BasicClassNode extends AbstractNode {
 
     @Override
     public Node parseSelf(Object object, Parser parser) {
-        setType(object.getClass());
-        setValue(object);
+        Class<?> aClass = object.getClass();
+        setType(aClass);
+        if(Date.class==aClass){
+            setValue(((Date)object).getTime());
+        }else {
+            setValue(object);
+        }
         return this;
     }
 }
