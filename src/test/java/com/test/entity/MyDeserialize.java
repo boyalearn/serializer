@@ -1,4 +1,4 @@
-package com.test.jackson;
+package com.test.entity;
 
 
 import com.fasterxml.jackson.core.JsonParser;

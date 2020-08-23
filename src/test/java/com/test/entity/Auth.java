@@ -1,4 +1,4 @@
-package com.test.jackson;
+package com.test.entity;
 
 public class Auth {
 
@@ -30,4 +30,11 @@ public class Auth {
         this.menu = menu;
     }
 
+    @Override
+    public String toString() {
+        return "Auth{" +
+                "role='" + role + '\'' +
+                ", menu='" + menu + '\'' +
+                '}';
+    }
 }

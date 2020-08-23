@@ -1,10 +1,6 @@
-package com.test.jackson;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+package com.test.entity;
 
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 
 public class MapBean {
@@ -16,7 +12,6 @@ public class MapBean {
     public MapBean(String json) {
         this.map = new LinkedHashMap<>();
     }
-    @JsonDeserialize(using = MyDeserialize.class)
     private Map<String, Object> map = new LinkedHashMap<String, Object>();
 
     public Map<String, Object> getMap() {
@@ -25,5 +20,12 @@ public class MapBean {
 
     public void setMap(Map<String, Object> map) {
         this.map = map;
+    }
+
+    @Override
+    public String toString() {
+        return "MapBean{" +
+                "map=" + map +
+                '}';
     }
 }

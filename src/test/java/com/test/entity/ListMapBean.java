@@ -1,4 +1,4 @@
-package com.test.jackson;
+package com.test.entity;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -12,5 +12,12 @@ public class ListMapBean {
 
     public void setMap(Map<List<String>, Object> map) {
         this.map = map;
+    }
+
+    @Override
+    public String toString() {
+        return "ListMapBean{" +
+                "map=" + map +
+                '}';
     }
 }
