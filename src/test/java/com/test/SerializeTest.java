@@ -7,6 +7,7 @@ import com.test.entity.Auth;
 import com.test.entity.ListMapBean;
 import org.junit.Test;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedHashMap;
@@ -32,6 +33,7 @@ public class SerializeTest {
         auth.setId(1L);
         auth.setDate(new Date());
         auth.setAuthEnum(AuthEnum.PRIVATE);
+        auth.setBigDecimal(new BigDecimal("2.1212141231"));
         listMap.put(list1, auth);
         listMap.put(list2, new Auth("2", "3"));
         listMapBean.setMap(listMap);

@@ -2,6 +2,7 @@ package com.test.entity;
 
 import com.test.AuthEnum;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class Auth {
@@ -22,6 +23,8 @@ public class Auth {
     private Date date;
 
     private AuthEnum authEnum;
+
+    private BigDecimal bigDecimal;
 
 
     public Auth(String role, String menu) {
@@ -85,6 +88,14 @@ public class Auth {
         this.authEnum = authEnum;
     }
 
+    public BigDecimal getBigDecimal() {
+        return bigDecimal;
+    }
+
+    public void setBigDecimal(BigDecimal bigDecimal) {
+        this.bigDecimal = bigDecimal;
+    }
+
     @Override
     public String toString() {
         return "Auth{" +
@@ -95,6 +106,7 @@ public class Auth {
                 ", flag=" + flag +
                 ", date=" + date +
                 ", authEnum=" + authEnum +
+                ", bigDecimal=" + bigDecimal +
                 '}';
     }
 }
